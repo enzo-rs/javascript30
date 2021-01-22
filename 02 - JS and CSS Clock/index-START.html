@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JS + CSS Clock</title>
-</head>
-<body>
-
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS + CSS Clock</title>
+  </head>
+  <body>
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
@@ -15,60 +13,143 @@
       </div>
     </div>
 
+    <style>
+      html {
+        background: #018ded url(http://unsplash.it/1500/1000?image=881&blur=5);
+        background-size: cover;
+        font-family: "helvetica neue";
+        text-align: center;
+        font-size: 10px;
+      }
 
-  <style>
-    html {
-      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=5);
-      background-size: cover;
-      font-family: 'helvetica neue';
-      text-align: center;
-      font-size: 10px;
-    }
+      body {
+        margin: 0;
+        font-size: 2rem;
+        display: flex;
+        flex: 1;
+        min-height: 100vh;
+        align-items: center;
+      }
 
-    body {
-      margin: 0;
-      font-size: 2rem;
-      display: flex;
-      flex: 1;
-      min-height: 100vh;
-      align-items: center;
-    }
+      .clock {
+        width: 30rem;
+        height: 30rem;
+        border: 20px solid white;
+        border-radius: 50%;
+        margin: 50px auto;
+        position: relative;
+        padding: 2rem;
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+      }
 
-    .clock {
-      width: 30rem;
-      height: 30rem;
-      border: 20px solid white;
-      border-radius: 50%;
-      margin: 50px auto;
-      position: relative;
-      padding: 2rem;
-      box-shadow:
-        0 0 0 4px rgba(0,0,0,0.1),
-        inset 0 0 0 3px #EFEFEF,
-        inset 0 0 10px black,
-        0 0 10px rgba(0,0,0,0.2);
-    }
+      .clock-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: translateY(
+          -3px
+        ); /* account for the height of the clock hands */
+      }
 
-    .clock-face {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform: translateY(-3px); /* account for the height of the clock hands */
-    }
+      .hand {
+        width: 50%;
+        height: 6px;
+        background: black;
+        position: absolute;
+        top: 50%;
+      }
 
-    .hand {
-      width: 50%;
-      height: 6px;
-      background: black;
-      position: absolute;
-      top: 50%;
-    }
+      .second-hand {
+        transform-origin: right;
+      }
 
-  </style>
+      .min-hand {
+        transform-origin: right;
+      }
 
-  <script>
+      .hour-hand {
+        transform-origin: right;
+      }
+
+      .clock {
+        transform-origin: center;
+        transform: rotate(90deg);
+      }
+    </style>
+
+    <script>
+      const start = new Date();
+
+      let secondHand = document.querySelector(".second-hand");
+      let minHand = document.querySelector(".min-hand");
+      let hourHand = document.querySelector(".hour-hand");
 
 
-  </script>
-</body>
+      // function repeat() {
+      //   let degree = ;
+      //   let oneSecond = 360 / 60;
+      //   console.log(oneSecond);
+      //   setInterval(() => {
+      //     degree += oneSecond;
+      //     secondHand.style.transform = "rotate(" + degree + "deg)";
+      //   }, 1000);
+
+      //   let degreeMin = degree/60;
+      //   let oneMin = 360 / (60 * 60);
+
+      //   setInterval(() => {
+      //     degreeMin += 0.1;
+      //     console.log(degreeMin);
+      //     minHand.style.transform = "rotate(" + degreeMin + "deg)";
+      //   }, 1000);
+
+      //   let degreeHour = degreeMin/12;
+      //   let oneHour = 360 / (12 * 3600);
+      //   console.log(oneHour);
+      //   setInterval(() => {
+      //     degreeMin += oneHour;
+      //     hourHand.style.transform = "rotate(" + degreeHour + "deg)";
+      //   }, 1000);
+      // }
+
+
+
+
+
+      function repeat() {
+        let s = start.getSeconds()
+        let degree = s*6;
+        let oneSecond = 360 / 60;
+        setInterval(() => {
+          degree += oneSecond;
+          secondHand.style.transform = "rotate(" + degree + "deg)";
+        }, 1000);
+
+
+        let m = start.getMinutes()
+        console.log(m)
+        let degreeMin = m*6;
+        let oneMin = 360 / (60 * 60);
+
+        setInterval(() => {
+          degreeMin += 0.1;
+          minHand.style.transform = "rotate(" + degreeMin + "deg)";
+        }, 1000);
+
+
+        let hour = start.getHours()
+        let degreeHour = hour*30;
+        console.log(hour)
+        let oneHour = 360 / (12 * 3600);
+        console.log(oneHour);
+        setInterval(() => {
+          degreeHour += oneHour;
+          hourHand.style.transform = "rotate(" + degreeHour + "deg)";
+        }, 1000);
+      }
+
+      repeat();
+    </script>
+  </body>
 </html>
