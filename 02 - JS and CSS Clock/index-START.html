@@ -60,17 +60,15 @@
         top: 50%;
       }
 
+      .second-hand, .min-hand, .hour-hand {
+        transform-origin: right;
+      }
+
       .second-hand {
-        transform-origin: right;
+        transition: all 0.05s ;
+        transition-timing-function:  cubic-bezier(0.1, 2.7, 0.58, 1);
       }
 
-      .min-hand {
-        transform-origin: right;
-      }
-
-      .hour-hand {
-        transform-origin: right;
-      }
 
       .clock {
         transform-origin: center;

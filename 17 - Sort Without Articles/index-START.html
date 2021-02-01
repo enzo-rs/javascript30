@@ -52,7 +52,7 @@ let list = document.querySelector('#bands');
 for (let i = 0; i < bands.length; i++) {
   const element = bands[i];
   list.appendChild(document.createElement('li'));
-  list.lastChild.textContent = element.replace(/The |An |A /i, '');
+  list.lastChild.textContent = element.replace(/The |An |A /, '');
   
 }
 
